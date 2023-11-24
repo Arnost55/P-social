@@ -4,10 +4,28 @@
 <html>
 <head>
   <title>Sign Up</title>
+  <!-- Add Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script>
+    // Initialize Firebase
+    var firebaseConfig = {
+      // Add your Firebase configuration here
+      apiKey: "AIzaSyASQPht-HnOXkWbqpNLgYEBuskGo1ntFpA",
+      authDomain: "psocial-bc3ad.firebaseapp.com",
+      projectId: "psocial-bc3ad",
+      storageBucket: "psocial-bc3ad.appspot.com",
+      messagingSenderId: "492122165633",
+      appId: "1:492122165633:web:354006aa61c1e1b35f1880"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <h1>Sign Up</h1>
-  <form action="signup.php" method="POST">
+  <form>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required><br><br>
     
@@ -19,5 +37,38 @@
     
     <input type="submit" value="Sign Up">
   </form>
+  
+  <script>
+    // Handle form submission
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Get user input
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      
+      // Create user in Firebase Authentication
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(function(userCredential) {
+          // Save additional user data to Firestore
+          var user = userCredential.user;
+          firebase.firestore().collection('users').doc(user.uid).set({
+            name: name,
+            email: email
+          })
+          .then(function() {
+            // Redirect to success page
+            window.location.href = 'signup-success.html';
+          })
+          .catch(function(error) {
+            console.error('Error saving user data:', error);
+          });
+        })
+        .catch(function(error) {
+          console.error('Error creating user:', error);
+        });
+    });
+  </script>
 </body>
 </html>
