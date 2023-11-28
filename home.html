@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Social Media</title>
+</head>
+<body>
+    <h1>Welcome to My Social Media</h1>
+    <div id="postsContainer"></div>
+    <iframe id="postsIframe"></iframe>
+
+    <script>
+        // Algorithm to fetch and display posts
+        function fetchPosts() {
+            // 1. Get the posts container element by its ID
+            const postsContainer = document.getElementById("postsContainer");
+
+            // 2. Iterate through each post in the posts array
+            posts.forEach(post => {
+                // 3. Create a new div element for each post
+                const postElement = document.createElement("div");
+
+                // 4. Set the innerHTML of the post element to display the post's username and content
+                postElement.innerHTML = `<strong>${post.username}</strong>: ${post.content}`;
+
+                // 5. Append the post element to the posts container
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // 6. Call the fetchPosts function to display the posts
+        fetchPosts();
+
+        // Algorithm to fetch and display posts through iframe
+        function fetchPostsIframe() {
+            // 1. Get the iframe element by its ID
+            const iframe = document.getElementById("postsIframe");
+
+            // 2. Create a new document object for the iframe
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+            // 3. Clear the existing content in the iframe
+            iframeDocument.body.innerHTML = "";
+
+            // 4. Iterate through each post in the posts array
+            posts.forEach(post => {
+                // 5. Create a new div element for each post
+                const postElement = iframeDocument.createElement("div");
+
+                // 6. Set the innerHTML of the post element to display the post's username and content
+                postElement.innerHTML = `<strong>${post.username}</strong>: ${post.content}`;
+
+                // 7. Append the post element to the iframe document body
+                iframeDocument.body.appendChild(postElement);
+            });
+        }
+
+        // 8. Call the fetchPostsIframe function to display the posts through iframe
+        fetchPostsIframe();
+
+        // Algorithm to check if user is logged in and create a personalized HTML page
+        function createPersonalizedPage(username, email) {
+            // 1. Check if user is logged in
+            if (username && email) {
+                // 2. Create a new HTML page with the user's username as the filename
+                const personalizedPage = document.createElement("a");
+                personalizedPage.href = `/users/${username}.html`;
+                personalizedPage.innerText = "Go to Personalized Page";
+                document.body.appendChild(personalizedPage);
+            }
+        }
+
+        // 9. Call the createPersonalizedPage function with the user's username and email
+        createPersonalizedPage("username", "email");
+    </script>
+</body>
+</html>

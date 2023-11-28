@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <!-- Include Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+  <h1>Login</h1>
+  <form id="loginForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    // Initialize Firebase
+    var firebaseConfig = {
+    // Add your Firebase configuration here
+    apiKey: "AIzaSyASQPht-HnOXkWbqpNLgYEBuskGo1ntFpA",
+    authDomain: "psocial-bc3ad.firebaseapp.com",
+    projectId: "psocial-bc3ad",
+    storageBucket: "psocial-bc3ad.appspot.com",
+    messagingSenderId: "492122165633",
+    appId: "1:492122165633:web:354006aa61c1e1b35f1880"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Get form element
+    var loginForm = document.getElementById('loginForm');
+
+    // Add event listener to form submit
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get user input
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      // Sign in with email and password
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(function(userCredential) {
+          // User signed in successfully
+          var user = userCredential.user;
+          console.log('User signed in:', user);
+          // Redirect to dashboard or another page
+          window.location.href = 'home.html';
+        })
+        .catch(function(error) {
+          // Handle login error
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.error('Login error:', errorCode, errorMessage);
+        });
+    });
+  </script>
+</body>
+</html>
