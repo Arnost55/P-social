@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    	uses: "ramsey/composer-install@v2"
+    - uses: "ramsey/composer-install@v2"
     - name: Setup PHP with PECL extension
  		  uses: shivammathur/setup-php@v2
   		with:
