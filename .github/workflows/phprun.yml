@@ -1,0 +1,23 @@
+name: PHP
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup PHP with PECL extension
+ 		  uses: shivammathur/setup-php@v2
+  		with:
+    		php-version: '8.3'
+    		extensions: behat, blackfire, blackfire-player, box, castor, churn, codeception, composer, composer-normalize, composer-prefetcher, composer-require-checker, composer-unused, cs2pr, deployer, flex, grpc_php_plugin, infection, parallel-lint, pecl, phan, phing, phinx, phive, php-config, php-cs-fixer, php-scoper, phpcbf, phpcpd, phpcs, phpdoc or phpDocumentor, phpize, phplint, phpmd, phpspec, phpstan, phpunit, phpunit-bridge, phpunit-polyfills, pint, prestissimo, protoc, psalm, rector, symfony, vapor, wp
+      
