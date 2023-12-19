@@ -16,6 +16,7 @@ jobs:
 
     steps:
     - uses: "ramsey/composer-install@v2"
+    - run: composer install
     - name: Setup PHP with PECL extension
  		  uses: shivammathur/setup-php@v2
   		with:
