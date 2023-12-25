@@ -62,13 +62,12 @@
 <script>
   // Initialize Firebase
   var firebaseConfig = {
-    // Add your Firebase configuration here
-    apiKey: "AIzaSyASQPht-HnOXkWbqpNLgYEBuskGo1ntFpA",
-    authDomain: "psocial-bc3ad.firebaseapp.com",
-    projectId: "psocial-bc3ad",
-    storageBucket: "psocial-bc3ad.appspot.com",
-    messagingSenderId: "492122165633",
-    appId: "1:492122165633:web:354006aa61c1e1b35f1880"
+    apiKey: `${secrets.APIKEY}`,
+    authDomain: `${secrets.AUTHDOMAIN}`,
+    projectId: `${secrets.PROJECTID}`,
+    storageBucket: `${secrets.SORAGEBUCKET}`,
+    messagingSenderId: `${secrets.MESSAGGINGSENDERID}`,
+    appId: `${secrets.APPID}`
   };
   firebase.initializeApp(firebaseConfig);
 </script>
