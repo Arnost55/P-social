@@ -120,8 +120,16 @@
           var fileRef = storageRef.child(email + '.txt');
           fileRef.putString('about me: ' + about + '\ntoken: ' + token)
             .then(function(snapshot) {
-              // Redirect to success page
-              window.location.href = 'login.html';
+              // Create a folder for the profile picture using the token
+              var profilePictureRef = storageRef.child('profilePictures/' + token);
+              profilePictureRef.putString(getInitials(name), 'data_url')
+                .then(function(snapshot) {
+                  // Redirect to success page
+                  window.location.href = 'login.html';
+                })
+                .catch(function(error) {
+                  console.error('Error creating profile picture:', error);
+                });
             })
             .catch(function(error) {
               console.error('Error creating text file:', error);
@@ -144,6 +152,13 @@
       token += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return token;
+  }
+  
+  // Function to get initials from name
+  function getInitials(name) {
+    var initials = name.match(/\b\w/g) || [];
+    initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+    return initials;
   }
 </script>
 </body>
