@@ -100,8 +100,17 @@
         // User signed in successfully
         var user = userCredential.user;
         console.log('User signed in:', user);
-        // Redirect to dashboard or another page
-        window.location.href = 'home.html';
+        
+        // Get token from Firebase storage
+        user.getIdToken().then(function(token) {
+          // Save token to cache
+          localStorage.setItem('token', token);
+          // Redirect to dashboard or another page
+          window.location.href = 'home.html';
+        }).catch(function(error) {
+          // Handle token retrieval error
+          console.error('Token retrieval error:', error);
+        });
       })
       .catch(function(error) {
         // Handle login error
