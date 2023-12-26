@@ -62,13 +62,22 @@
 <script>
   // Initialize Firebase
   // Load Firebase configuration from GitHub secrets
+  var secrets = {
+    APIKEY: "APIKEY",
+    AUTHDOMAIN: "AUTHDOMAIN",
+    PROJECTID: "PROJECTID",
+    STORAGEBUCKET: "STORAGEBUCKET",
+    MESSAGGINGSENDERID: "MESSAGGINGSENDERID",
+    APPID: "APPID"
+  };
+  
   var firebaseConfig = {
-    apiKey: `${secrets.APIKEY}`,
-    authDomain: `${secrets.AUTHDOMAIN}`,
-    projectId: `${secrets.PROJECTID}`,
-    storageBucket: `${secrets.SORAGEBUCKET}`,
-    messagingSenderId: `${secrets.MESSAGGINGSENDERID}`,
-    appId: `${secrets.APPID}`
+    apiKey: secrets.APIKEY,
+    authDomain: secrets.AUTHDOMAIN,
+    projectId: secrets.PROJECTID,
+    storageBucket: secrets.STORAGEBUCKET,
+    messagingSenderId: secrets.MESSAGGINGSENDERID,
+    appId: secrets.APPID
   };
   firebase.initializeApp(firebaseConfig);
 </script>
